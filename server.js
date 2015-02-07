@@ -17,7 +17,20 @@ app.post("/",
   function (request, response) {
     // TODO: validate posted data
     // TODO: accept options for transforming
-    var topology = topojson.topology({data: request.body});
+    var data = {data: request.body};
+    
+    // allow arrays of geojson objects, too
+    if (Array.isArray(request.body)) {
+      // NOTE: this is naively assuming we'll be receiving an array of features and not geometries.
+      data = {};
+      for (var i = request.body.length - 1; i >= 0; i--) {
+        var item = request.body[i];
+        var key = item.properties && item.properties.id || i;
+        data[key] = item;
+      }
+    }
+    
+    var topology = topojson.topology(data);
     response.end(JSON.stringify(topology));
   });
  
