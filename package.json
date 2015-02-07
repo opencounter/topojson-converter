@@ -1,0 +1,17 @@
+{
+  "name": "topojson-service",
+  "version": "0.1.0",
+  "description": "A simple HTTP service for converting GeoJSON to TopoJSON.",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.11.2",
+    "topojson": "^1.6.18"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Open Counter Enterprises Inc.",
+  "license": ""
+}
