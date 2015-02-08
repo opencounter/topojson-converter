@@ -1,7 +1,12 @@
 {
-  "name": "topojson-service",
+  "name": "topojson-converter",
   "version": "0.1.0",
   "description": "A simple HTTP service for converting GeoJSON to TopoJSON.",
+  "keywords": [
+    "geo",
+    "geojson",
+    "topojson"
+  ],
   "main": "server.js",
   "dependencies": {
     "body-parser": "^1.11.0",
@@ -14,5 +19,19 @@
     "start": "node server.js"
   },
   "author": "Open Counter Enterprises Inc.",
-  "license": ""
+  "license": "BSD",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/opencounter/topojson-converter.git"
+  },
+  "engines": {
+    "node": ">0.10.x",
+    "npm": ">2.x.x"
+  },
+  "contributors": [
+    {
+      "name": "Rob Bracket",
+      "email": "rob@robbrackett.com"
+    }
+  ]
 }
