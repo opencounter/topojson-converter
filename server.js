@@ -35,4 +35,4 @@ app.post("/",
   });
  
 app.listen(PORT);
-console.log("topojson-service server listening on port %d", PORT);
+console.log("topojson-converter server listening on port %d", PORT);
