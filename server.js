@@ -31,7 +31,7 @@ app.post("/",
     }
     
     var topology = topojson.topology(data);
-    response.end(JSON.stringify(topology));
+    response.json(topology);
   });
  
 app.listen(PORT);
