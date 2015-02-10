@@ -16,7 +16,6 @@ app.post("/",
   },
   function (request, response) {
     // TODO: validate posted data
-    // TODO: accept options for transforming
     var data = {data: request.body};
     
     // allow arrays of geojson objects, too
@@ -30,9 +29,32 @@ app.post("/",
       }
     }
     
-    var topology = topojson.topology(data);
+    var topology = topojson.topology(data, buildOptions(request));
     response.json(topology);
   });
+
+function buildOptions(request) {
+  var options = {};
+  if ("properties" in request.query) {
+    // In the future, it might be nice to accept a list of props to preserve
+    options["property-transform"] = function(object) { return object.properties; };
+  }
+  if ("id" in request.query) {
+    options["id"] = function(object) { return object.properties[request.query.id]; };
+  }
+  if ("stitch-poles" in request.query) {
+    options["stitch-poles"] = true;
+  }
+  if ("cooordinate-system" in request.query) {
+    options["cooordinate-system"] =
+      request.query["cooordinate-system"] == "cartesian" ? "cartesian" : "spherical";
+  }
+  if ("quantization" in request.query) {
+    options.quantization = +request.query.quantization;
+  }
+
+  return options;
+}
  
 app.listen(PORT);
 console.log("topojson-converter server listening on port %d", PORT);
