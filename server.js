@@ -21,7 +21,7 @@ app.get("/", function (request, response) {
 app.post("/",
   bodyParser.json({ limit: "10mb"}),
   function (error, request, response, next) {
-    console.log("You sent malformed JSON data.";
+    console.log("You sent malformed JSON data.");
     return response.end("You sent malformed JSON data.");
   },
   function (request, response) {
