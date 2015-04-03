@@ -21,16 +21,11 @@ app.get("/", function (request, response) {
 app.post("/",
   bodyParser.json({ limit: "10mb"}),
   function (error, request, response, next) {
-    console.log("error = " + error);
-    console.log("request = " + request);
-    console.log("response = " + response);
+    console.log("You sent malformed JSON data.";
     return response.end("You sent malformed JSON data.");
   },
   function (request, response) {
     // TODO: validate posted data
-    console.log("request = " + request);
-    console.log("response = " + response);
-
     var collectionName = request.query.name;
     var data = {};
     data[collectionName || "data"] = request.body;
@@ -61,8 +56,6 @@ app.post("/",
   });
 
 function buildOptions(request) {
-  console.log("request = " + request);
-
   var options = {};
   if ("properties" in request.query) {
     // In the future, it might be nice to accept a list of props to preserve
