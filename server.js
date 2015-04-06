@@ -51,7 +51,12 @@ app.post("/",
       }
     }
     
-    var topology = topojson.topology(data, buildOptions(request));
+    var options = buildOptions(request);
+    var topology = topojson.topology(data, options);
+    if ("force-clockwise" in request.query) {
+      topojson.clockwise(topology, options);
+    }
+    topojson.filter(topology, options);
     response.json(topology);
   });
 
