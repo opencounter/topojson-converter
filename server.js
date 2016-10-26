@@ -19,7 +19,7 @@ app.get("/", function (request, response) {
  *   - If not provided, each item in the array will be stored individually.
  */
 app.post("/",
-  bodyParser.json({ limit: "20mb"}),
+  bodyParser.json({ limit: "30mb"}),
   function (error, request, response, next) {
     console.log("You sent malformed JSON data.");
     return response.end("You sent malformed JSON data.");
